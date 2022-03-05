@@ -18,4 +18,19 @@
         app:spanCount="2"
         tools:listitem="@layout/item_note" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:clickable="true"
+        android:contentDescription="@string/button_to_add_your_note"
+        android:focusable="true"
+        android:src="@drawable/ic_add"
+        app:fabCustomSize="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:maxImageSize="26dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
