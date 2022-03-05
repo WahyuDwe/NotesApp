@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import com.wahyudwi.notesapp.R
 import com.wahyudwi.notesapp.data.entity.NoteEntity
 import com.wahyudwi.notesapp.databinding.FragmentAddBinding
+import com.wahyudwi.notesapp.utils.DateUtils
 
 class AddFragment : Fragment() {
 
@@ -60,7 +61,7 @@ class AddFragment : Fragment() {
                 content.isEmpty() -> etContent.error = getString(R.string.empty)
 
                 else -> {
-                    val note = NoteEntity(0, title, content)
+                    val note = NoteEntity(0, title, content, DateUtils.getCurrentData())
 
                     mAddViewModel.addNote(note)
                     Toast.makeText(requireContext(), "Successfully added", Toast.LENGTH_SHORT)

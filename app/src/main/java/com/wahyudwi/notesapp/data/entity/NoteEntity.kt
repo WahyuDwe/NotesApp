@@ -11,5 +11,6 @@ data class NoteEntity(
     @PrimaryKey(autoGenerate = true)
     var id: Int,
     var title: String,
-    var content: String
+    var content: String,
+    var date: String
 ) : Parcelable

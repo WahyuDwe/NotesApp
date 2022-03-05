@@ -31,7 +31,7 @@ class HomeAdapter : RecyclerView.Adapter<HomeAdapter.NoteViewHolder>() {
             binding.apply {
                 tvTitle.text = note.title
                 tvContent.text = note.content
-
+                tvDate.text = note.date
                 itemView.setOnClickListener {
                     val action = HomeFragmentDirections.actionHomeFragmentToUpdateFragment(note)
                     itemView.findNavController().navigate(action)

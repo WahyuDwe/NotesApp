@@ -75,7 +75,7 @@ class UpdateFragment : Fragment() {
                 }
 
                 else -> {
-                    val newNote = NoteEntity(args.currentNote.id, title, content)
+                    val newNote = NoteEntity(args.currentNote.id, title, content, "")
                     mUpdateViewModel.updateNote(newNote)
                     Toast.makeText(requireContext(), "Successfully updated", Toast.LENGTH_SHORT)
                         .show()
