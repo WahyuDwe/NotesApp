@@ -1,4 +1,4 @@
-package com.wahyudwi.notesapp.ui.content
+package com.wahyudwi.notesapp.ui.add
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -7,24 +7,12 @@ import com.wahyudwi.notesapp.data.NoteRepository
 import com.wahyudwi.notesapp.data.entity.NoteEntity
 import kotlinx.coroutines.launch
 
-class ContentViewModel(application: Application) : AndroidViewModel(application) {
+class AddViewModel(application: Application) : AndroidViewModel(application) {
     private val repository = NoteRepository(application)
 
     fun addNote(note: NoteEntity) {
         viewModelScope.launch {
             repository.addNote(note)
-        }
-    }
-
-    fun updateNote(note: NoteEntity) {
-        viewModelScope.launch {
-            repository.updateNote(note)
-        }
-    }
-
-    fun deleteNote(note: NoteEntity) {
-        viewModelScope.launch {
-            repository.deleteNote(note)
         }
     }
 }

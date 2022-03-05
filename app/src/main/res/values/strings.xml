@@ -7,4 +7,5 @@
     <string name="content">Content</string>
     <string name="save">save</string>
     <string name="delete">delete</string>
+    <string name="empty">Field can\'t blank</string>
 </resources>
