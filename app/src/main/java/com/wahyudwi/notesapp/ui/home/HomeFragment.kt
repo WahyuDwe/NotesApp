@@ -37,7 +37,7 @@ class HomeFragment : Fragment() {
             }
             rvNote.adapter = adapter
             rvNote.setHasFixedSize(true)
-            rvNote.layoutManager = GridLayoutManager(requireContext(), 2)
+            rvNote.layoutManager = LinearLayoutManager(requireContext())
         }
 
         mHomeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
