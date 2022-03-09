@@ -8,4 +8,8 @@
     <string name="save">save</string>
     <string name="delete">delete</string>
     <string name="empty">Field can\'t blank</string>
+    <string name="newest">Newest</string>
+    <string name="latest">latest</string>
+    <string name="random">random</string>
+    <string name="search">Search</string>
 </resources>

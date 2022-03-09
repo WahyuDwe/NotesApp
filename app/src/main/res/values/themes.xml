@@ -12,5 +12,11 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="actionOverflowButtonStyle">@style/SortMenu</item>
+    </style>
+
+    <style name="SortMenu" parent="Widget.AppCompat.ActionButton.Overflow">
+        <item name="android:src">@drawable/ic_filter</item>
+        <item name="android:contentDescription">"icon for sort Note"</item>
     </style>
 </resources>

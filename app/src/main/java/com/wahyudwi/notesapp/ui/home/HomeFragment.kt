@@ -1,13 +1,10 @@
 package com.wahyudwi.notesapp.ui.home
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.wahyudwi.notesapp.R
 import com.wahyudwi.notesapp.databinding.FragmentHomeBinding
@@ -44,6 +41,11 @@ class HomeFragment : Fragment() {
         mHomeViewModel.getAllNote.observe(viewLifecycleOwner) {
             adapter.setData(it)
         }
+        setHasOptionsMenu(true)
+    }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.home_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
     }
 }
