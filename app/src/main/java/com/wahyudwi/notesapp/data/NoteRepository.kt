@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import com.wahyudwi.notesapp.data.entity.NoteEntity
 import com.wahyudwi.notesapp.data.room.NoteDao
 import com.wahyudwi.notesapp.data.room.NoteDatabase
+import com.wahyudwi.notesapp.utils.SortUtils
 
 class NoteRepository(application: Application) {
     private val noteDao: NoteDao
@@ -14,7 +15,11 @@ class NoteRepository(application: Application) {
         noteDao = db.noteDao()
     }
 
-    val getAllNote: LiveData<List<NoteEntity>> = noteDao.getAllNote()
+    fun getAllNote(filter: String): LiveData<List<NoteEntity>> {
+        val query = SortUtils.sortedQuery(filter)
+        return noteDao.getAllNote(query)
+    }
+
 
     suspend fun addNote(note: NoteEntity) {
         noteDao.addNote(note)

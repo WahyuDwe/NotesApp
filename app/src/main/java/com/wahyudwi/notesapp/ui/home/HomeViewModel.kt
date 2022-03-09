@@ -7,11 +7,8 @@ import com.wahyudwi.notesapp.data.NoteRepository
 import com.wahyudwi.notesapp.data.entity.NoteEntity
 
 class HomeViewModel(application: Application) : AndroidViewModel(application) {
-    val getAllNote: LiveData<List<NoteEntity>>
     private val repository = NoteRepository(application)
 
-    init {
-        getAllNote = repository.getAllNote
-    }
+    fun getAllNote(filter: String): LiveData<List<NoteEntity>> = repository.getAllNote(filter)
 
 }

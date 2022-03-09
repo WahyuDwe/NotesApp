@@ -8,11 +8,13 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.wahyudwi.notesapp.R
 import com.wahyudwi.notesapp.databinding.FragmentHomeBinding
+import com.wahyudwi.notesapp.utils.SortUtils
 
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding
     private lateinit var mHomeViewModel: HomeViewModel
+    private lateinit var adapter: HomeAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,7 +28,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = HomeAdapter()
+        adapter = HomeAdapter()
 
         binding?.apply {
             fabAdd.setOnClickListener {
@@ -38,7 +40,7 @@ class HomeFragment : Fragment() {
         }
 
         mHomeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
-        mHomeViewModel.getAllNote.observe(viewLifecycleOwner) {
+        mHomeViewModel.getAllNote(SortUtils.LATEST).observe(viewLifecycleOwner) {
             adapter.setData(it)
         }
         setHasOptionsMenu(true)
@@ -47,5 +49,19 @@ class HomeFragment : Fragment() {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.home_menu, menu)
         super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        var filter = ""
+        when (item.itemId) {
+            R.id.action_latest -> filter = SortUtils.LATEST
+            R.id.action_oldest -> filter = SortUtils.OLDEST
+            R.id.action_random -> filter = SortUtils.RANDOM
+        }
+        mHomeViewModel.getAllNote(filter).observe(viewLifecycleOwner) {
+            adapter.setData(it)
+        }
+        item.isChecked = true
+        return super.onOptionsItemSelected(item)
     }
 }
