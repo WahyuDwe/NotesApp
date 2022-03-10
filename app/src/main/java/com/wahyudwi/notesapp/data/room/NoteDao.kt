@@ -10,6 +10,9 @@ interface NoteDao {
     @RawQuery(observedEntities = [NoteEntity::class])
     fun getAllNote(query: SupportSQLiteQuery): LiveData<List<NoteEntity>>
 
+    @Query("SELECT * FROM note_table WHERE title LIKE :search")
+    fun searchNote(search: String): LiveData<List<NoteEntity>>
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addNote(note: NoteEntity)
 

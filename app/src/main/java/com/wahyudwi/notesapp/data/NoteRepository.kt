@@ -20,6 +20,8 @@ class NoteRepository(application: Application) {
         return noteDao.getAllNote(query)
     }
 
+    fun getSearchNote(search: String): LiveData<List<NoteEntity>> = noteDao.searchNote(search)
+
 
     suspend fun addNote(note: NoteEntity) {
         noteDao.addNote(note)

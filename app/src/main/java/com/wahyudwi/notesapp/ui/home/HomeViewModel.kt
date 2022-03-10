@@ -11,4 +11,6 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
 
     fun getAllNote(filter: String): LiveData<List<NoteEntity>> = repository.getAllNote(filter)
 
+    fun getSearchNote(search: String): LiveData<List<NoteEntity>> = repository.getSearchNote(search)
+
 }
