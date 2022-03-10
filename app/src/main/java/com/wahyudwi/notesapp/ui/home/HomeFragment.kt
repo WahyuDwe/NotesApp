@@ -2,6 +2,7 @@ package com.wahyudwi.notesapp.ui.home
 
 import android.os.Bundle
 import android.view.*
+import android.widget.ImageView
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -16,7 +17,7 @@ import com.wahyudwi.notesapp.utils.SortUtils
 class HomeFragment : Fragment(), SearchView.OnQueryTextListener {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding
-    private val listNote: ArrayList<NoteEntity> = arrayListOf()
+    private var closeButton: ImageView? = null
     private lateinit var mHomeViewModel: HomeViewModel
     private lateinit var adapter: HomeAdapter
 
@@ -57,9 +58,14 @@ class HomeFragment : Fragment(), SearchView.OnQueryTextListener {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.home_menu, menu)
 
-        val searchView = menu.findItem(R.id.action_search).actionView as SearchView
-        searchView.setOnQueryTextListener(this)
-        searchView.maxWidth = Int.MAX_VALUE
+        val mSearchView = menu.findItem(R.id.action_search).actionView as SearchView
+        mSearchView.setOnQueryTextListener(this)
+        mSearchView.setIconifiedByDefault(true)
+        mSearchView.maxWidth = Int.MAX_VALUE
+        closeButton = mSearchView.findViewById(androidx.appcompat.R.id.search_close_btn)
+        closeButton?.setOnClickListener {
+            mSearchView.onActionViewCollapsed()
+        }
         return super.onCreateOptionsMenu(menu, inflater)
     }
 
