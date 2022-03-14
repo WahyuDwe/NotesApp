@@ -1,5 +1,6 @@
 package com.wahyudwi.notesapp.ui.home
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.findNavController
@@ -8,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.wahyudwi.notesapp.data.entity.NoteEntity
 import com.wahyudwi.notesapp.databinding.ItemNoteBinding
 import com.wahyudwi.notesapp.utils.DiffUtils
+
 
 class HomeAdapter : RecyclerView.Adapter<HomeAdapter.NoteViewHolder>() {
     private var oldList = emptyList<NoteEntity>()
@@ -21,6 +23,7 @@ class HomeAdapter : RecyclerView.Adapter<HomeAdapter.NoteViewHolder>() {
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
         val note = oldList[position]
         holder.bind(note)
+        holder.cvColor(position)
     }
 
     override fun getItemCount(): Int = oldList.size
@@ -35,6 +38,23 @@ class HomeAdapter : RecyclerView.Adapter<HomeAdapter.NoteViewHolder>() {
                 itemView.setOnClickListener {
                     val action = HomeFragmentDirections.actionHomeFragmentToUpdateFragment(note)
                     itemView.findNavController().navigate(action)
+                }
+
+            }
+        }
+
+        fun cvColor(position: Int) {
+            binding.apply {
+                when {
+                    position % 3 == 0 -> {
+                        cvNote.setCardBackgroundColor(Color.parseColor("#FFF89A"))
+                    }
+                    position % 2 == 0 -> {
+                        cvNote.setCardBackgroundColor(Color.parseColor("#FFB2A6"))
+                    }
+                    else -> {
+                        cvNote.setCardBackgroundColor(Color.parseColor("#FF8AAE"))
+                    }
                 }
             }
         }
